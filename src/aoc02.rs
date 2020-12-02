@@ -46,10 +46,9 @@ pub(crate) fn solve_part2() {
       let first = password.chars().nth(first).unwrap();
       let second = password.chars().nth(second).unwrap();
 
-      if (first == letter || second == letter) && first != second {
+      if (first == letter) ^ (second == letter) {
          global_count = global_count + 1;
       }
    }
    println!("Global count: {}", global_count);
-
 }
