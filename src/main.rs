@@ -1,6 +1,7 @@
 mod aoc02;
 mod aoc01;
+mod aoc03;
 
 fn main() {
-    aoc01::solve_part2();
+    aoc03::solve_part2();
 }
