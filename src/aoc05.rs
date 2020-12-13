@@ -1,7 +1,15 @@
-use std::io::{stdin, BufRead};
+use std::io::{stdin, BufRead, StdinLock};
 
+// O(n)
 pub fn solve() {
-    let max = stdin().lock().lines().map(|line| {
+    let max = parse_ids(stdin().lock())
+        .max().unwrap();
+    println!("Max id is {}.", max);
+}
+
+// O(n)
+fn parse_ids(stdin: StdinLock) -> impl Iterator<Item=u32> + '_ {
+    stdin.lines().map(|line| {
         let line = line.unwrap();
 
         let binary = line.chars().map(|c| {
@@ -13,8 +21,21 @@ pub fn solve() {
         let id = row * 8 + seat;
 
         id
+    })
+}
 
-    }).max().unwrap();
+// O(n log n)
+pub fn solve_part2() {
+    let mut ids = parse_ids(stdin().lock()).collect::<Vec<u32>>();
 
-    println!("Max id is {}.", max);
+    ids.sort();
+
+    let mut prev_seat = u32::MAX - 2;
+
+    for cur_seat in ids {
+        if prev_seat + 2 == cur_seat {
+             println!("My seat is {}.", prev_seat + 1)
+        }
+        prev_seat = cur_seat;
+    }
 }

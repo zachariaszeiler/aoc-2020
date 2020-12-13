@@ -5,5 +5,5 @@ mod aoc04;
 mod aoc05;
 
 fn main() {
-    aoc05::solve();
+    aoc05::solve_part2();
 }
