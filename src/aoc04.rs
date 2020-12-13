@@ -74,11 +74,7 @@ impl<'a, T> CollectTuple for T
     fn collect_tuple(&mut self) -> Option<(String, String)> {
         let first = self.next();
         let second = self.next();
-        if first.is_some() && second.is_some() {
-            Some((first?.to_owned(), second?.to_owned()))
-        } else {
-            None
-        }
+        Some((first?.to_owned(), second?.to_owned()))
     }
 }
 
